@@ -55,9 +55,9 @@ public class CaballoServicio {
         casillas_color.add(caballo.getPos_tablero());
         
         if (caballo.getJugador().equals(negro)){
-            nombre="▲☻"+caballo.getTipo();
+            nombre="N  "+caballo.getTipo();
         }else{
-            nombre="▼☺"+caballo.getTipo();
+            nombre="B  "+caballo.getTipo();
         }
         
         caballo.setNombre(nombre);        

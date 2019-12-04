@@ -166,8 +166,8 @@ public class TableroServicio {
         tablero.setLanceros(lanceros);
         tablero.setPeones(peones);
         tablero.setTorres(torres);
-        tablero.setCaptura_por_las_blancas(null);
-        tablero.setCapturada_por_las_negreas(null);
+        tablero.setCaptura_por_las_blancas(new ArrayList<>());
+        tablero.setCapturada_por_las_negreas(new ArrayList<>());
         
         return tablero;
     }

@@ -42,9 +42,9 @@ public class AlfilServicio {
         casillas_color.add(alfil.getPos_tablero());
         
         if (alfil.getJugador().equals(negro)){
-            nombre="▲☻_"+alfil.getTipo();
+            nombre="N  "+alfil.getTipo();
         }else{
-            nombre="▼☺_"+alfil.getTipo();
+            nombre="B  "+alfil.getTipo();
         }
         alfil.setNombre(nombre);        
         alfil.setPosibles_movimientos(posibles_movimientos);
