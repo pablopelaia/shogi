@@ -44,6 +44,8 @@ public class PeonServicio {
         
         peon.setNombre(nombre);        
         peon.setPosibles_movimientos(posibles_movimientos);
+        peon.setCapturado(false);
+        peon.setCoronado(false);
         
     }
     
@@ -86,11 +88,11 @@ public class PeonServicio {
                 movimientos=(generaldeoroservicio.verMovimientos(peon.getJugador(), casilla, tablero));
             }else{
                 if (peon.getJugador().equals(negro)){
-                    if ((casilla-10)>10 && !tableroservicio.posicionOcupada(casilla-10, negro)){
+                    if ((casilla-10)>10 && !tableroservicio.posicionOcupada(tablero, casilla-10, negro)){
                         movimientos.add(casilla-10);
                     }
                 }else{
-                    if ((casilla+10)<100 && !tableroservicio.posicionOcupada(casilla+10, blanco)){
+                    if ((casilla+10)<100 && !tableroservicio.posicionOcupada(tablero, casilla+10, blanco)){
                         movimientos.add(casilla+10);
                     }
                 }

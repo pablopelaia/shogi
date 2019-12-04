@@ -8,9 +8,7 @@ public class Partida {
     private boolean check_mate;
     private Tablero tablero;
 
-    public Partida() {
-        this.turno = 0;
-        this.check_mate = false;
+    public Partida() {        
     }
 
     public int getTurno() {

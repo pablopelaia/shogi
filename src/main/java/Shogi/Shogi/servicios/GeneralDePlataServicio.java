@@ -63,6 +63,8 @@ public class GeneralDePlataServicio {
     
         plata.setNombre(nombre);        
         plata.setPosibles_movimientos(posibles_movimientos);
+        plata.setCapturado(false);
+        plata.setCoronado(false);
         
     }
     
@@ -106,32 +108,32 @@ public class GeneralDePlataServicio {
                 movimiento=generaldeoroSsrvicio.verMovimientos(generaldeplata.getJugador(), casilla, tablero);
             }else{
                 casilla=casilla+9;
-                if(casilla<99 && casilla%10!=0 && !tableroservicio.posicionOcupada(casilla, generaldeplata.getJugador())){
+                if(casilla<99 && casilla%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla, generaldeplata.getJugador())){
                     movimiento.add(casilla);
                 }
 
                 casilla=generaldeplata.getPos_tablero()+11;
-                if(casilla<100 && casilla%10!=0 && !tableroservicio.posicionOcupada(casilla, generaldeplata.getJugador())){
+                if(casilla<100 && casilla%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla, generaldeplata.getJugador())){
                     movimiento.add(casilla);
                 }
 
                 casilla=casilla-9;
-                if(casilla>11 && casilla%10!=0 && !tableroservicio.posicionOcupada(casilla, generaldeplata.getJugador())){
+                if(casilla>11 && casilla%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla, generaldeplata.getJugador())){
                     movimiento.add(casilla);
                 }
                 casilla=generaldeplata.getPos_tablero()-11;
-                if(casilla>10 && casilla%10!=0 && !tableroservicio.posicionOcupada(casilla, generaldeplata.getJugador())){
+                if(casilla>10 && casilla%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla, generaldeplata.getJugador())){
                     movimiento.add(casilla);
                 }
 
                 if (generaldeplata.getJugador().equals(negro)){
                     casilla=generaldeplata.getPos_tablero()-10;
-                    if (casilla>10 && !tableroservicio.posicionOcupada(casilla, negro)){
+                    if (casilla>10 && !tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         movimiento.add(casilla);
                     }
                 }else{
                     casilla=generaldeplata.getPos_tablero()+10;
-                    if (casilla<100 && !tableroservicio.posicionOcupada(casilla, negro)){
+                    if (casilla<100 && !tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         movimiento.add(casilla);
                     }                
                 }

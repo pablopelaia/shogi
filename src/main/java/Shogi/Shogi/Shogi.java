@@ -15,7 +15,7 @@ public class Shogi {
             do {
                 partidaservicio.nuevoTurno(partida);
             } while (!partida.isCheck_mate());
-            
+         
+            partidaservicio.anuncioJaqueMate(partida);
 	}
-
 }

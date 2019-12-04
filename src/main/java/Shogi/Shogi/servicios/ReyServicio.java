@@ -1,6 +1,7 @@
 package Shogi.Shogi.servicios;
 
 import Shogi.Shogi.entidades.Rey;
+import Shogi.Shogi.entidades.Tablero;
 import Shogi.Shogi.enumeraciones.Jugador;
 import static Shogi.Shogi.enumeraciones.Jugador.negro;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class ReyServicio {
         
         rey.setNombre(nombre);        
         rey.setPosibles_movimientos(posibles_movimientos);
+        rey.setJaque(false);
         
         return rey;
     }
@@ -54,47 +56,47 @@ public class ReyServicio {
 /*El método devolverá el arreglo con todos los movimientos posibles del rey en casillas no ocupadas por piezas de su
 color, luego en otros métodos se eliminan las casillas que provacan jaque.*/
     
-    public ArrayList<Integer> verMovimientos (Rey rey){
+    public ArrayList<Integer> verMovimientos (Tablero tablero, Rey rey){
         ArrayList<Integer> arreglo = new ArrayList<>();
-        TableroServicio tableroservicio = new TableroServicio();
+        TableroServicio tableroservicio = new TableroServicio();        
                 
         int casilla=rey.getPos_tablero()+11;
-        if ((casilla<100) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla<100) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()+10;
-        if ((casilla<100) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla<100) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()+9;
-        if ((casilla<100) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla<100) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()+1;
-        if ((casilla%10!=0) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla%10!=0) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()-1;
-        if ((casilla%10!=0) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla%10!=0) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()-11;
-        if ((casilla>10) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla>10) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()-10;
-        if ((casilla>10) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla>10) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
         
         casilla=rey.getPos_tablero()-9;
-        if ((casilla>10) && (!tableroservicio.posicionOcupada(casilla, rey.getJugador()))){
+        if ((casilla>10) && (!tableroservicio.posicionOcupada(tablero, casilla, rey.getJugador()))){
             arreglo.add(casilla);
         }
                 

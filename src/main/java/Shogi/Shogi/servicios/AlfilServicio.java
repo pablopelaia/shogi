@@ -9,10 +9,12 @@ import static Shogi.Shogi.enumeraciones.Jugador.negro;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class AlfilServicio {
-    /**
+
+/**
      * Creo dos alfiles, 1 y 2, con un "if - else" distingo si es negro o blanco.    
     */ 
+public class AlfilServicio {
+    
     public void Crear (Alfil alfil, HashSet<Integer> piezas_mov, HashSet<Integer> casillas_color, int id, Jugador jugador){
         
         ArrayList<Integer> posibles_movimientos = new ArrayList<>();
@@ -46,6 +48,8 @@ public class AlfilServicio {
         }
         alfil.setNombre(nombre);        
         alfil.setPosibles_movimientos(posibles_movimientos);
+        alfil.setCoronado(false);
+        alfil.setCapturado(false);
     }
     
     /**
@@ -97,16 +101,16 @@ public class AlfilServicio {
             do {
                 casilla=casilla+9;
                 if (casilla<99 && casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, color)){
-                        casilla=90;
+                    if (tableroservicio.posicionOcupada(tablero, casilla, color)){
+                        break;
                     }else{
                         movimientos.add(casilla);
-                        if (tableroservicio.posicionOcupada(casilla, contrario)){
-                            casilla=90;
+                        if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
+                            break;
                         }
                     }
                 }else{
-                    casilla=90;
+                    break;
                 }
             } while (casilla<90);
 
@@ -114,16 +118,16 @@ public class AlfilServicio {
             do {
                 casilla=casilla-9;
                 if (casilla>11 && casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, color)){
-                        casilla=20;
+                    if (tableroservicio.posicionOcupada(tablero, casilla, color)){
+                        break;
                     }else{
                         movimientos.add(casilla);
-                        if (tableroservicio.posicionOcupada(casilla, contrario)){
-                            casilla=20;
+                        if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
+                            break;
                         }
                     }
                 }else{
-                    casilla=20;
+                    break;
                 }
             } while (casilla>20);
 
@@ -131,16 +135,16 @@ public class AlfilServicio {
             do {
                 casilla=casilla+11;
                 if (casilla<100 && casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, color)){
-                        casilla=89;
+                    if (tableroservicio.posicionOcupada(tablero, casilla, color)){
+                        break;
                     }else{
                         movimientos.add(casilla);
-                        if (tableroservicio.posicionOcupada(casilla, contrario)){
-                            casilla=89;
+                        if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
+                            break;
                         }
                     }
                 }else{
-                    casilla=89;
+                    break;
                 }
             } while (casilla<89);
 
@@ -148,16 +152,16 @@ public class AlfilServicio {
             do {
                 casilla=casilla-11;
                 if (casilla>10 && casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, color)){
-                        casilla=21;
+                    if (tableroservicio.posicionOcupada(tablero, casilla, color)){
+                        break;
                     }else{
                         movimientos.add(casilla);
-                        if (tableroservicio.posicionOcupada(casilla, contrario)){
-                            casilla=21;
+                        if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
+                            break;
                         }
                     }
                 }else{
-                    casilla=21;
+                    break;
                 }
             } while (casilla>21);
 
@@ -165,12 +169,12 @@ public class AlfilServicio {
 
                 casilla=alfil.getPos_tablero()+10;
                 if (casilla<100){
-                    if (tableroservicio.posicionOcupada(casilla, negro)){
+                    if (tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         if (alfil.getJugador().equals(blanco)){
                             movimientos.add(casilla);
                         }
                     }else{
-                        if (tableroservicio.posicionOcupada(casilla, blanco)){
+                        if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                             if (alfil.getJugador().equals(negro)){
                                 movimientos.add(casilla);                            
                             }
@@ -182,12 +186,12 @@ public class AlfilServicio {
 
                 casilla=alfil.getPos_tablero()-10;
                 if (casilla>10){
-                    if (tableroservicio.posicionOcupada(casilla, negro)){
+                    if (tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         if (alfil.getJugador().equals(blanco)){
                             movimientos.add(casilla);
                         }
                     }else{
-                        if (tableroservicio.posicionOcupada(casilla, blanco)){
+                        if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                             if (alfil.getJugador().equals(negro)){
                                 movimientos.add(casilla);                            
                             }
@@ -199,12 +203,12 @@ public class AlfilServicio {
 
                 casilla=alfil.getPos_tablero()+1;
                 if (casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, negro)){
+                    if (tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         if (alfil.getJugador().equals(blanco)){
                             movimientos.add(casilla);
                         }
                     }else{
-                        if (tableroservicio.posicionOcupada(casilla, blanco)){
+                        if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                             if (alfil.getJugador().equals(negro)){
                                 movimientos.add(casilla);                            
                             }
@@ -216,12 +220,12 @@ public class AlfilServicio {
 
                 casilla=alfil.getPos_tablero()-1;
                 if (casilla%10!=0){
-                    if (tableroservicio.posicionOcupada(casilla, negro)){
+                    if (tableroservicio.posicionOcupada(tablero, casilla, negro)){
                         if (alfil.getJugador().equals(blanco)){
                             movimientos.add(casilla);
                         }
                     }else{
-                        if (tableroservicio.posicionOcupada(casilla, blanco)){
+                        if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                             if (alfil.getJugador().equals(negro)){
                                 movimientos.add(casilla);                            
                             }

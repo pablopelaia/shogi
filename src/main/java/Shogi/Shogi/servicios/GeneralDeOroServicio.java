@@ -71,6 +71,7 @@ public class GeneralDeOroServicio {
     
         oro.setNombre(nombre);        
         oro.setPosibles_movimientos(posibles_movimientos);
+        oro.setCapturado(false);
                 
     }
     
@@ -118,28 +119,28 @@ public class GeneralDeOroServicio {
         }else{
             
             if (movimiento<100){      
-                if (!tableroservicio.posicionOcupada(movimiento, color)){
+                if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                     arreglo.add(movimiento);
                 }
             }
 
             movimiento=casilla-10;
             if (movimiento>10){      
-                if (!tableroservicio.posicionOcupada(movimiento, color)){
+                if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                     arreglo.add(movimiento);
                 }
             }
 
             movimiento=casilla+1;
             if (movimiento%10!=0){      
-                if (!tableroservicio.posicionOcupada(movimiento, color)){
+                if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                     arreglo.add(movimiento);
                 }
             }
 
             movimiento=casilla-1;
             if (movimiento%10!=0){      
-                if (!tableroservicio.posicionOcupada(movimiento, color)){
+                if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                     arreglo.add(movimiento);
                 }
             }
@@ -147,26 +148,26 @@ public class GeneralDeOroServicio {
             if (color.equals(negro)){
                 movimiento=casilla-11;
                 if (movimiento>10){
-                    if (!tableroservicio.posicionOcupada(movimiento, color)){
+                    if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                         arreglo.add(movimiento);
                     }
                 }
                 movimiento=casilla-9;
                 if (movimiento>11){
-                    if (!tableroservicio.posicionOcupada(movimiento, color)){
+                    if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                         arreglo.add(movimiento);
                     }
                 }
             }else{
                 movimiento=casilla+11;
                 if (movimiento<100){
-                    if (!tableroservicio.posicionOcupada(movimiento, color)){
+                    if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                         arreglo.add(movimiento);
                     }
                 }
                 movimiento=casilla+9;
                 if (movimiento<99){
-                    if (!tableroservicio.posicionOcupada(movimiento, color)){
+                    if (!tableroservicio.posicionOcupada(tablero, movimiento, color)){
                         arreglo.add(movimiento);
                     }
                 }            

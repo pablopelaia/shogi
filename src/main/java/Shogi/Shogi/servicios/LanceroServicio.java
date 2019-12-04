@@ -39,6 +39,8 @@ public class LanceroServicio {
         
         lancero.setNombre(nombre);
         lancero.setPosibles_movimientos(null); 
+        lancero.setCapturado(false);
+        lancero.setCoronado(false);
         
     }
     
@@ -89,7 +91,7 @@ public class LanceroServicio {
                                 break;
                             }else{
                                 movimientos.add(casilla);
-                                if (tableroservicio.posicionOcupada(casilla, blanco)){
+                                if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                                     break;
                                 }
                             }
@@ -103,7 +105,7 @@ public class LanceroServicio {
                                 break;
                             }else{
                                 movimientos.add(casilla);
-                                if (tableroservicio.posicionOcupada(casilla, blanco)){
+                                if (tableroservicio.posicionOcupada(tablero, casilla, blanco)){
                                     break;
                                 }
                             }

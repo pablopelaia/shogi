@@ -1,5 +1,6 @@
 package Shogi.Shogi.servicios;
 
+import Shogi.Shogi.entidades.Tablero;
 import Shogi.Shogi.entidades.Torre;
 import Shogi.Shogi.enumeraciones.Jugador;
 import static Shogi.Shogi.enumeraciones.Jugador.blanco;
@@ -54,6 +55,8 @@ public class TorreServicio {
     
         torre.setNombre(nombre);        
         torre.setPosibles_movimientos(posibles_movimientos);
+        torre.setCapturado(false);
+        torre.setCoronado(false);
         
     }
     
@@ -68,7 +71,7 @@ public class TorreServicio {
      * movimiento y en el segundo si lo hace pero se trunca la suceción de movimientos en esa dirección).
      * Si la pieza está coronada se analizan cuatro movimientos posibles más.
      */   
-    public ArrayList<Integer> verMovimientos (Torre torre){
+    public ArrayList<Integer> verMovimientos (Tablero tablero, Torre torre){
         
         ArrayList<Integer> arreglo = new ArrayList<>();
         TableroServicio tableroservicio = new TableroServicio();
@@ -84,11 +87,11 @@ public class TorreServicio {
          do {
              casilla=casilla+10;
              if (casilla<100){
-                 if (tableroservicio.posicionOcupada(casilla, color)){
+                 if (tableroservicio.posicionOcupada(tablero, casilla, color)){
                      break;
                  }else{
                      arreglo.add(casilla);
-                     if (tableroservicio.posicionOcupada(casilla, contrario)){
+                     if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
                          break;
                      }
                  }
@@ -99,11 +102,11 @@ public class TorreServicio {
          do {
              casilla=casilla-10;
              if (casilla>10){
-                 if (tableroservicio.posicionOcupada(casilla, color)){
+                 if (tableroservicio.posicionOcupada(tablero, casilla, color)){
                      break;
                  }else{
                      arreglo.add(casilla);
-                     if (tableroservicio.posicionOcupada(casilla, contrario)){
+                     if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
                          break;
                      }
                  }
@@ -114,11 +117,11 @@ public class TorreServicio {
          do {
              casilla=casilla-1;
              if (casilla%10!=0){
-                 if (tableroservicio.posicionOcupada(casilla, color)){
+                 if (tableroservicio.posicionOcupada(tablero, casilla, color)){
                      break;
                  }else{
                      arreglo.add(casilla);
-                     if (tableroservicio.posicionOcupada(casilla, contrario)){
+                     if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
                          break;
                      }
                  }
@@ -129,11 +132,11 @@ public class TorreServicio {
          do {
              casilla=casilla+1;
              if (casilla%10!=0){
-                 if (tableroservicio.posicionOcupada(casilla, color)){
+                 if (tableroservicio.posicionOcupada(tablero, casilla, color)){
                      break;
                  }else{
                      arreglo.add(casilla);
-                     if (tableroservicio.posicionOcupada(casilla, contrario)){
+                     if (tableroservicio.posicionOcupada(tablero, casilla, contrario)){
                          break;
                      }
                  }
@@ -142,19 +145,19 @@ public class TorreServicio {
          
          if (torre.isCoronado()){
              casilla=torre.getPos_tablero();
-             if ((casilla<89) && (!tableroservicio.posicionOcupada(casilla+11, color))){
+             if ((casilla<89) && (!tableroservicio.posicionOcupada(tablero, casilla+11, color))){
                  arreglo.add(casilla+11);
              }
              
-             if ((casilla<90) && (!tableroservicio.posicionOcupada(casilla+9, color))){
+             if ((casilla<90) && (!tableroservicio.posicionOcupada(tablero, casilla+9, color))){
                  arreglo.add(casilla+9);
              }
              
-             if ((casilla>21) && (!tableroservicio.posicionOcupada(casilla-11, color))){
+             if ((casilla>21) && (!tableroservicio.posicionOcupada(tablero, casilla-11, color))){
                  arreglo.add(casilla+11);
              }
              
-             if ((casilla>20) && (!tableroservicio.posicionOcupada(casilla-9, color))){
+             if ((casilla>20) && (!tableroservicio.posicionOcupada(tablero, casilla-9, color))){
                  arreglo.add(casilla+9);
              }
          }

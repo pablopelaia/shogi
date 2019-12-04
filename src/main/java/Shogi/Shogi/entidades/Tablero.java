@@ -23,6 +23,8 @@ public class Tablero {
     private HashSet<Integer> casillas_negras;
     
     public Tablero() {
+        this.captura_por_las_blancas = null;
+        this.capturada_por_las_negreas = null;
     }
  
 

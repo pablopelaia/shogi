@@ -62,6 +62,8 @@ public class CaballoServicio {
         
         caballo.setNombre(nombre);        
         caballo.setPosibles_movimientos(posibles_movimientos);
+        caballo.setCapturado(false);
+        caballo.setCoronado(false);
         
     }
     
@@ -104,19 +106,19 @@ public class CaballoServicio {
             }else{
                 if (caballo.getJugador().equals(negro)){
 
-                    if (casilla<79 && (casilla+21)%10!=0 && !tableroservicio.posicionOcupada(casilla+21, negro)){
+                    if (casilla<79 && (casilla+21)%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla+21, negro)){
                         movimiento.add(casilla+21);
                     }
 
-                    if (casilla<80 && (casilla+19)%10!=0 && !tableroservicio.posicionOcupada(casilla+19, negro)){
+                    if (casilla<80 && (casilla+19)%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla+19, negro)){
                         movimiento.add(casilla+19);
                     }                
                 }else{
-                    if (casilla>31 && (casilla-21)%10!=0 && !tableroservicio.posicionOcupada(casilla-21, negro)){
+                    if (casilla>31 && (casilla-21)%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla-21, negro)){
                         movimiento.add(casilla-21);
                     }
 
-                    if (casilla>30 && (casilla-19)%10!=0 && !tableroservicio.posicionOcupada(casilla-19, negro)){
+                    if (casilla>30 && (casilla-19)%10!=0 && !tableroservicio.posicionOcupada(tablero, casilla-19, negro)){
                         movimiento.add(casilla-19);
                     }
                 }
