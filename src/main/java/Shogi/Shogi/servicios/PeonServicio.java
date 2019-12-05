@@ -37,9 +37,9 @@ public class PeonServicio {
         casillas_color.add(peon.getPos_tablero());
                         
         if (peon.getJugador().equals(negro)){
-            nombre="▲☻"+peon.getTipo();
+            nombre="N  "+peon.getTipo();
         }else{
-            nombre="▼☺"+peon.getTipo();
+            nombre="B  "+peon.getTipo();
         }
         
         peon.setNombre(nombre);        

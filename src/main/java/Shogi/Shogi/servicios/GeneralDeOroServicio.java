@@ -64,9 +64,9 @@ public class GeneralDeOroServicio {
         casillas_color.add(oro.getPos_tablero());
         
         if (oro.getJugador().equals(negro)){
-            nombre="▲☻"+oro.getTipo();
+            nombre="N  "+oro.getTipo();
         }else{
-            nombre="▼☺"+oro.getTipo();
+            nombre="B  "+oro.getTipo();
         }
     
         oro.setNombre(nombre);        
@@ -104,7 +104,7 @@ public class GeneralDeOroServicio {
         boolean clavada=false;
         
         if (casilla>6 && casilla<11){
-            int id_casilla=partidaServicio.buscaId(casilla, tablero);            
+            int id_casilla=tableroservicio.buscaId(casilla, tablero);
             if (color.equals(negro)){
                 rey=tablero.getRey_negro();
             }else{

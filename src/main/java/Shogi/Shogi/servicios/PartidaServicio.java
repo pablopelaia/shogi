@@ -111,7 +111,7 @@ public class PartidaServicio {
             
             if (respuesta.equals("si")){
                 
-                ArrayList<String> capturadas_tipo =null;
+                ArrayList<String> capturadas_tipo = new ArrayList<>();
                 String tipo;
                 
                 tableroservicio.imprimeCapturadas(piezas_capturadas, capturadas_tipo);
@@ -120,11 +120,11 @@ public class PartidaServicio {
                     casilla_origen=Integer.parseInt(JOptionPane.showInputDialog("ingrese id de la pieza que desea ingresar"));
                     casilla_destino=Integer.parseInt(JOptionPane.showInputDialog("ingrese el casillero al cual desea ingresar la pieza"));
                     
-                    verificador=tableroservicio.compruebaCasillaLibre(casilla_destino, tablero);
+                    verificador=tableroservicio.compruebaCasillaPosible(casilla_destino, tablero, turno);
                     
                 } while (!verificador);
                 
-                respuesta=null;
+                respuesta="";
                 tipo=tableroservicio.buscaTipo (casilla_origen, piezas_capturadas, capturadas_tipo);
                 
                 if (!tipo.equals("General de Oro")){
@@ -149,7 +149,7 @@ public class PartidaServicio {
                     verificador=false;
 
                 }else{    
-                    id_pieza=buscaId(casilla_origen, tablero);
+                    id_pieza=tableroservicio.buscaId(casilla_origen, tablero);
 
                     if (id_pieza==0){
                         verificador=false;
@@ -179,19 +179,6 @@ public class PartidaServicio {
             solucionaJaque(partida, turno);
         }
     }
-    
-    
-/**Recibe la ubicaciÃƒÂ³n de la pieza en el tablero (ArrayList) por lo que al iterar el arreglo conseguimos el Id*/
-    public int buscaId(int pieza, Tablero tablero){
-        int fila, columna;
-        
-        columna=pieza%10;
-        fila=((pieza-columna)/10)-1;
-        columna=columna-1;
-        
-        return tablero.getTablero_id_piezas()[fila][columna];
-    }
-    
     
 /** Con el id de la pieza se puede determinar de quÃƒÂ© pieza se trata (alfil si es 1 ÃƒÂ³ 2, si va del 3 al 4 caballo, etc) y se llama al mÃƒÂ©todo
 De ser posible realizar el movimiento lo realiza, de lo contrario.
@@ -673,7 +660,7 @@ jugador de ese turno.
         }
          
         if (tableroservicio.posicionOcupada(tablero, casilla_destino, color_contrario)){
-             id_contrario=buscaId(casilla_destino, tablero);
+             id_contrario=tableroservicio.buscaId(casilla_destino, tablero);
              
              comePieza(tablero, id_contrario, turno, casilla_destino);
         }
@@ -689,19 +676,16 @@ jugador de ese turno.
             tablero.getCasillas_blancas().remove(casilla_origen);
             tablero.getCasillas_blancas().add(casilla_destino);
         }
-        
-        columna=casilla_origen%10;
-        fila=((casilla_origen-columna)/10)-1;
-        columna=columna-1;
-        
+        columna=tableroservicio.buscaColumna(casilla_origen);
+        fila=tableroservicio.buscaFila(casilla_origen);
+                
         tablero.getTablero_id_piezas()[fila][columna]=0;
         
         nombre_pieza = tablero.getMatriz_tablero()[fila][columna];
         tablero.getMatriz_tablero()[fila][columna]="     ";
         
-        columna=casilla_destino%10;
-        fila=((casilla_destino-columna)/10)-1;
-        columna=columna-1;
+        columna=tableroservicio.buscaColumna(casilla_destino);
+        fila=tableroservicio.buscaFila(casilla_destino);
         
         tablero.getTablero_id_piezas()[fila][columna]=pieza.getId();
         tablero.getMatriz_tablero()[fila][columna]=nombre_pieza;        
@@ -1584,11 +1568,13 @@ jugador de ese turno.
         
         boolean pieza_presente=false;
         int id_casilla;
+        
+        TableroServicio tableroServicio = new TableroServicio();
         ArrayList<Integer> nuevo_arreglo=null;
                 
         for (Integer casilla : arreglo) {
             
-            id_casilla=buscaId(casilla, tablero);
+            id_casilla=tableroServicio.buscaId(casilla, tablero);
                         
             if (id_casilla==0){
                 nuevo_arreglo.add(casilla);

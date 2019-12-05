@@ -31,7 +31,7 @@ public class TableroServicio {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++){
                 tablero_id[i][j]=0;
-                tablero_piezas[i][j]="     "; 
+                tablero_piezas[i][j]="      "; 
             }            
         }
         
@@ -203,13 +203,13 @@ public class TableroServicio {
      * arreglo y en el mismo se cambia solamente cuando coincide la posiciÃ³n buscada por el nombre de la pieza. 
      */    
     public void ubicaFichaEnTablero (int posicion, int id, Tablero tablero, String pieza){
+        
         String[][] arreglo_piezas=tablero.getMatriz_tablero();
         int [][] arreglo_id=tablero.getTablero_id_piezas();
-        int fila,columna;
+        int fila = buscaFila(posicion), columna = buscaColumna(posicion);
         
-        columna=posicion%10;
-        fila=((posicion-columna)/10)-1;
-        columna=columna-1;
+        buscaFila(posicion);
+        buscaColumna(posicion);
         
         arreglo_piezas[fila][columna]=pieza;
         arreglo_id[fila][columna]=id;
@@ -236,6 +236,7 @@ public class TableroServicio {
             System.out.print((i+1)+"0 s  ");
             for (int j = 0; j < 9; j++) {
                 System.out.print(tablero.getMatriz_tablero()[i][j]);
+                System.out.print("|");
             }
             System.out.println("");
         }
@@ -285,7 +286,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             alfil=aux;
             
             if (alfil.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=alfilServicio.verMovimientos(alfil, tablero);
@@ -315,7 +316,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             torre=aux;
             
             if (torre.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=torreServicio.verMovimientos(tablero, torre);
@@ -343,7 +344,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             lancero=aux;
             
             if (lancero.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=lanceroServicio.verMovimientos(lancero, tablero);
@@ -372,7 +373,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             generalDeOro=aux;
             
             if (generalDeOro.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=generalDeOroServicio.verMovimientos(turno, generalDeOro.getPos_tablero(), tablero);
@@ -401,7 +402,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             generalDePlata=aux;
             
             if (generalDePlata.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=generalDePlataServicio.verMovimientos(generalDePlata, tablero);
@@ -431,7 +432,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             caballo=aux;
             
             if (caballo.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=caballoServicio.verMovimientos(caballo, tablero);
@@ -462,7 +463,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             peon=aux;
             
             if (peon.isCapturado()){
-                movimientos=null;
+                movimientos.clear();
                 
             }else{
                 movimientos=peonServicio.verMovimientos(peon, tablero);
@@ -581,17 +582,33 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
         System.out.println("");
     }
 
-    public boolean compruebaCasillaLibre(int casilla_destino, Tablero tablero) {
+    /* Primero se llama a un método que devolverá la fila y columna de la matriz que corresponde al la casilla. Se consulta en
+    la matriz si la casilla es verdadera, de no ser así se busca que sea una casilla ocupada por el rival, si no cumple ninguna
+    de estas dos opciones el valor retornado sera false.*/    
+    public boolean compruebaCasillaPosible(int casilla_destino, Tablero tablero, Jugador turno) {
         
-        int columna, fila;
+        int columna=buscaColumna(casilla_destino), fila=buscaFila(casilla_destino);
         boolean respuesta=false;
-        
-        columna=casilla_destino%10;
-        fila=((casilla_destino-columna)/10)-1;
-        columna=columna-1;
-        
+                
         if (tablero.getTablero_id_piezas()[fila][columna]==0){
             respuesta=true;                   
+        }else{
+            
+            HashSet<Integer> arreglo = new HashSet<>();
+            
+            if (turno.equals(negro)){
+                arreglo=tablero.getCasillas_blancas();
+            }else{
+                arreglo=tablero.getCasillas_negras();
+            }
+            
+            for (Integer pieza : arreglo) {
+                
+                if (casilla_destino==pieza){
+                    respuesta=true;
+                    break;
+                }                
+            }
         }
         
         return respuesta;
@@ -608,14 +625,10 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
     */
     public void ingresaPieza(int id_origen, int casilla_destino, String respuesta, Tablero tablero, String tipo){
         
-        int columna, fila;        
+        int columna =buscaColumna(casilla_destino), fila = buscaFila(casilla_destino);        
         int[][] nuevo_tablero = new int[9][9];
         String[][] nuevo_tablero_Str = new String[9][9];
-        
-        columna=casilla_destino%10;
-        fila=((casilla_destino-columna)/10)-1;
-        columna=columna-1;
-        
+                
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (i==fila && j==columna){
@@ -623,8 +636,7 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 }else{
                      nuevo_tablero[i][j]= tablero.getTablero_id_piezas()[i][j];
                 }
-            }
-            
+            }            
         }
         
         tablero.setTablero_id_piezas(nuevo_tablero);
@@ -646,14 +658,12 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 
                 alfiles_aux.remove(alfil_aux);               
                 alfil_aux.setCapturado(false);
+                                                             
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, alfil_aux.getJugador(), alfil_aux.getTipo(), alfil_aux.isCoronado());
                                 
-                if (respuesta.equals("si")){
-                    alfil_aux.setCoronado(true);                    
-                    coronaPieza(tablero, fila, columna, alfil_aux.getJugador(), alfil_aux.getTipo());
-                }
-                
                 alfiles_aux.add(alfil_aux);
                 tablero.setAlfiles(alfiles_aux);
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 
                 break;
                 
@@ -673,13 +683,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 caballos_aux.remove(caballo_aux);                
                 caballo_aux.setCapturado(false);
                                 
-                if (respuesta.equals("si")){
-                    caballo_aux.setCoronado(true);                    
-                    coronaPieza(tablero, fila, columna, caballo_aux.getJugador(), caballo_aux.getTipo());                    
-                }
-                
+                seteaArregloString(nuevo_tablero_Str,tablero, fila, columna, caballo_aux.getJugador(), caballo_aux.getTipo(), caballo_aux.isCoronado());
+                                
                 caballos_aux.add(caballo_aux);
                 tablero.setCaballos(caballos_aux);
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
                 
             case "General de Oro":
@@ -697,10 +705,12 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 
                 oros_aux.remove(generalDeOro_aux);                
                 generalDeOro_aux.setCapturado(false);
-                                
+                
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, generalDeOro_aux.getJugador(), generalDeOro_aux.getTipo(), false);
+                
                 oros_aux.add(generalDeOro_aux);
                 tablero.setGenerales_oro(oros_aux);
-                
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
                 
             case "General de Plata":
@@ -719,14 +729,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 platas_aux.remove(generalDePlata_aux);                
                 generalDePlata_aux.setCapturado(false);
                                 
-                if (respuesta.equals("si")){
-                    generalDePlata_aux.setCoronado(true);
-                    coronaPieza(tablero, fila, columna, generalDePlata_aux.getJugador(), generalDePlata_aux.getTipo());
-                }
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, generalDePlata_aux.getJugador(), generalDePlata_aux.getTipo(), generalDePlata_aux.isCoronado());
                 
                 platas_aux.add(generalDePlata_aux);
                 tablero.setGenerales_plata(platas_aux);
-                
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
                 
             case "Lancero":
@@ -745,14 +752,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 lanceros_aux.remove(lancero_aux);                
                 lancero_aux.setCapturado(false);
                                 
-                if (respuesta.equals("si")){
-                    lancero_aux.setCoronado(true);
-                    coronaPieza(tablero, fila, columna, lancero_aux.getJugador(), lancero_aux.getTipo());
-                }
-                
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, lancero_aux.getJugador(), lancero_aux.getTipo(), lancero_aux.isCoronado());
+                    
                 lanceros_aux.add(lancero_aux);
                 tablero.setLanceros(lanceros_aux);
-                
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
                 
             case "Peon":
@@ -771,14 +775,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 peones_aux.remove(peon_aux);                
                 peon_aux.setCapturado(false);
                                 
-                if (respuesta.equals("si")){
-                    peon_aux.setCoronado(true);
-                    coronaPieza(tablero, fila, columna, peon_aux.getJugador(), peon_aux.getTipo());
-                }
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, peon_aux.getJugador(), peon_aux.getTipo(), peon_aux.isCoronado());
                 
                 peones_aux.add(peon_aux);
                 tablero.setPeones(peones_aux);
-                
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
                 
             case "Torre":
@@ -797,14 +798,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
                 torres_aux.remove(torre_aux);                
                 torre_aux.setCapturado(false);
                                 
-                if (respuesta.equals("si")){
-                    torre_aux.setCoronado(true);
-                    coronaPieza(tablero, fila, columna, torre_aux.getJugador(), torre_aux.getTipo());
-                }
-                
+                seteaArregloString(nuevo_tablero_Str, tablero, fila, columna, torre_aux.getJugador(), torre_aux.getTipo(), torre_aux.isCoronado());
+                               
                 torres_aux.add(torre_aux);
                 tablero.setTorres(torres_aux);
-                
+                tablero.setMatriz_tablero(nuevo_tablero_Str);
                 break;
         }
     }
@@ -824,18 +822,26 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
         return tipo;        
     }
 
-    private void coronaPieza(Tablero tablero, int fila, int columna, Jugador jugador, String tipo) {
-        
-        String [][] arreglo = tablero.getMatriz_tablero();
+    public void seteaArregloString(String [][] arreglo, Tablero tablero, int fila, int columna, Jugador jugador, String tipo, boolean coronado) {
         
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 
                 if (fila==i && columna==j){
                     if (jugador.equals(negro)){
-                        arreglo[fila][columna]="▲CӾ"+tipo;
+                        
+                        if (coronado){
+                            arreglo[fila][columna]="N #"+tipo;
+                        }else{
+                            arreglo[fila][columna]="N  "+tipo;
+                        }
                     }else{
-                        arreglo[fila][columna]="▼CӾ"+tipo;
+                        
+                        if (coronado){
+                            arreglo[fila][columna]="B #"+tipo;
+                        }else{
+                            arreglo[fila][columna]="B  "+tipo;
+                        }
                     }
                 }else{
                     arreglo[fila][columna]=tablero.getMatriz_tablero()[fila][columna];
@@ -843,4 +849,36 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             }            
         }        
     }
+    
+     
+    /**Recibe la ubicaciÃƒÂ³n de la pieza en el tablero (ArrayList) por lo que al iterar el arreglo conseguimos el Id*/
+    public int buscaId(int pieza, Tablero tablero){
+        
+        int fila=buscaFila(pieza), columna=buscaColumna(pieza);
+                
+        return tablero.getTablero_id_piezas()[fila][columna];
+    }
+
+    /* Recibe un entero que represneta a una casilla y devuleve la fila que represneta al mismo en la matriz*/
+    public int buscaFila(int casilla) {
+        
+        int fila, auxiliar=casilla%10;
+        
+        fila=casilla-auxiliar;
+        fila= fila/10;
+        
+        return fila-1;
+        
+    }
+    
+     /* Recibe un entero que represneta a una casilla y devuleve la columna que represneta al mismo en la matriz*/
+    public int buscaColumna(int casilla) {
+        
+        int columna;
+        
+        columna=casilla%10;
+                
+        return columna-1;
+        
+    }  
 }

@@ -48,9 +48,9 @@ public class TorreServicio {
         casillas_color.add(torre.getPos_tablero());
         
         if (torre.getJugador().equals(negro)){
-            nombre="▲☻"+torre.getTipo();
+            nombre="N  "+torre.getTipo();
         }else{
-            nombre="▼☺"+torre.getTipo();
+            nombre="B  "+torre.getTipo();
         }
     
         torre.setNombre(nombre);        

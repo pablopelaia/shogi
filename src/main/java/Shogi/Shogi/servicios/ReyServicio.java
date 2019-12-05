@@ -41,9 +41,9 @@ public class ReyServicio {
         casillas_color.add(rey.getPos_tablero());
                
         if (rey.getJugador().equals(negro)){
-            nombre="▲☻"+rey.getTipo();
+            nombre="N  "+rey.getTipo();
         }else{
-            nombre="▼☺"+rey.getTipo();
+            nombre="B  "+rey.getTipo();
         }
         
         rey.setNombre(nombre);        

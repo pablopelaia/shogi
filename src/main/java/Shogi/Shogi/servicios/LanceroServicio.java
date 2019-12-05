@@ -32,13 +32,13 @@ public class LanceroServicio {
         casillas_color.add(lancero.getPos_tablero());
         
         if (lancero.getJugador().equals(negro)){
-            nombre="▲☻"+lancero.getTipo();
+            nombre="N  "+lancero.getTipo();
         }else{
-            nombre="▼☺"+lancero.getTipo();
+            nombre="B  "+lancero.getTipo();
         }
         
         lancero.setNombre(nombre);
-        lancero.setPosibles_movimientos(null); 
+        lancero.setPosibles_movimientos(new ArrayList<>()); 
         lancero.setCapturado(false);
         lancero.setCoronado(false);
         

@@ -56,9 +56,9 @@ public class GeneralDePlataServicio {
         casillas_color.add(plata.getPos_tablero());
         
         if (plata.getJugador().equals(negro)){
-            nombre="▲☻"+plata.getTipo();
+            nombre="N  "+plata.getTipo();
         }else{
-            nombre="▼☺"+plata.getTipo();
+            nombre="B  "+plata.getTipo();
         }
     
         plata.setNombre(nombre);        

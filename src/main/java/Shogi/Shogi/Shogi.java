@@ -9,8 +9,9 @@ public class Shogi {
     sea verdadero 
  */	
     public static void main(String[] args) {
-            PartidaServicio partidaservicio = new PartidaServicio();
-            Partida partida = partidaservicio.crearPartida();
+            
+        PartidaServicio partidaservicio = new PartidaServicio();
+        Partida partida = partidaservicio.crearPartida();
             
             do {
                 partidaservicio.nuevoTurno(partida);
