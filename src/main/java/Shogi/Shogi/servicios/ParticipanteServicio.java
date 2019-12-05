@@ -12,7 +12,7 @@ public class ParticipanteServicio {
         int sorteo;
         
         sorteo=(int)(Math.random()*10);
-        
+        System.out.println("CREAR PARTICIPANTES SORTEO="+sorteo);
         if (sorteo%2==0){
             jugador_1.setId(1);
             jugador_1.setNombre(nombre_1);
@@ -28,6 +28,8 @@ public class ParticipanteServicio {
             jugador_1.setNombre(nombre_2);
             jugador_1.setColor(blanco);
         }
+        
+        System.out.println("PARTICIPANTES CREADOS,FIN MÉTODO");
 
     }
 }

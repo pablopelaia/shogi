@@ -12,9 +12,8 @@ public class CaballoServicio {
     /**
      * Se crean cuatro caballos del 3 al 6, con un "switch" distingo si es negro o blanco y asigno posición.
     */     
-    public void Crear (Caballo caballo, HashSet<Integer> piezas_mov, HashSet<Integer> casillas_color, int id, Jugador jugador) {
+    public void Crear (Caballo caballo, HashSet<Integer> casillas_color, int id, Jugador jugador) {
         
-        ArrayList<Integer> posibles_movimientos = new ArrayList<>();
         String nombre;
         
         caballo.setId(id);
@@ -24,31 +23,15 @@ public class CaballoServicio {
         switch (id){
             case 3:
                 caballo.setPos_tablero(92);
-                posibles_movimientos.add(71);
-                piezas_mov.add(71);
-                posibles_movimientos.add(73);
-                piezas_mov.add(73);
                 break;
             case 4:
                 caballo.setPos_tablero(98);
-                posibles_movimientos.add(67);
-                piezas_mov.add(67);
-                posibles_movimientos.add(69);
-                piezas_mov.add(69);
                 break;
             case 5:
                 caballo.setPos_tablero(12);
-                posibles_movimientos.add(31);
-                piezas_mov.add(31);
-                posibles_movimientos.add(33);
-                piezas_mov.add(33);
                 break;
             case 6:
                 caballo.setPos_tablero(18);
-                posibles_movimientos.add(37);
-                piezas_mov.add(37);
-                posibles_movimientos.add(39);
-                piezas_mov.add(39);
                 break;
         }
         
@@ -61,7 +44,7 @@ public class CaballoServicio {
         }
         
         caballo.setNombre(nombre);        
-        caballo.setPosibles_movimientos(posibles_movimientos);
+        caballo.setPosibles_movimientos(new ArrayList<>());
         caballo.setCapturado(false);
         caballo.setCoronado(false);
         

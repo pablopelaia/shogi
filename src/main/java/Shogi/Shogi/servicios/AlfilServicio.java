@@ -15,30 +15,20 @@ import java.util.HashSet;
     */ 
 public class AlfilServicio {
     
-    public void Crear (Alfil alfil, HashSet<Integer> piezas_mov, HashSet<Integer> casillas_color, int id, Jugador jugador){
+    public void Crear (Alfil alfil, HashSet<Integer> casillas_color, int id, Jugador jugador){
         
-        ArrayList<Integer> posibles_movimientos = new ArrayList<>();
         String nombre;        
     
         alfil.setTipo("Alf");
         alfil.setJugador(jugador);
         alfil.setId(id);
         
-        if (jugador.equals(negro)){
-            
-            alfil.setPos_tablero(82);
-            piezas_mov.add(81);
-            posibles_movimientos.add(81);
-            piezas_mov.add(82); 
-            posibles_movimientos.add(82);            
-    }else{
-            
+        if (jugador.equals(negro)){            
+            alfil.setPos_tablero(82);                                   
+    }else{            
             alfil.setPos_tablero(28);
-            piezas_mov.add(27);
-            posibles_movimientos.add(27);
-            piezas_mov.add(29);
-            posibles_movimientos.add(29);
     }
+        
         casillas_color.add(alfil.getPos_tablero());
         
         if (alfil.getJugador().equals(negro)){
@@ -46,8 +36,8 @@ public class AlfilServicio {
         }else{
             nombre="B  "+alfil.getTipo();
         }
-        alfil.setNombre(nombre);        
-        alfil.setPosibles_movimientos(posibles_movimientos);
+        alfil.setNombre(nombre);
+        alfil.setPosibles_movimientos(new ArrayList<>());
         alfil.setCoronado(false);
         alfil.setCapturado(false);
     }

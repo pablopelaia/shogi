@@ -61,25 +61,25 @@ public class TableroServicio {
         
         Alfil alfil = new Alfil();
         
-        a_serv.Crear(alfil, negras_movimientos, casillas_negras, 1, negro);
+        a_serv.Crear(alfil, casillas_negras, 1, negro);
         ubicaFichaEnTablero(alfil.getPos_tablero(), alfil.getId(), tablero, alfil.getNombre());
         alfiles.add(alfil);
-        a_serv.Crear(alfil, blancas_movimientos, casillas_blancas, 2, blanco);
+        a_serv.Crear(alfil, casillas_blancas, 2, blanco);
         ubicaFichaEnTablero(alfil.getPos_tablero(), alfil.getId(), tablero, alfil.getNombre());
         alfiles.add(alfil);
                    
         Caballo caballo = new Caballo();
         
-        c_serv.Crear(caballo, negras_movimientos, casillas_negras, 3, negro);
+        c_serv.Crear(caballo, casillas_negras, 3, negro);
         ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
         caballos.add(caballo);
-        c_serv.Crear(caballo, negras_movimientos, casillas_negras, 4, negro);
+        c_serv.Crear(caballo, casillas_negras, 4, negro);
         ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
         caballos.add(caballo);
-        c_serv.Crear(caballo, blancas_movimientos, casillas_blancas, 5, blanco);
+        c_serv.Crear(caballo, casillas_blancas, 5, blanco);
         ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
         caballos.add(caballo);
-        c_serv.Crear(caballo, blancas_movimientos, casillas_blancas, 6, blanco);
+        c_serv.Crear(caballo, casillas_blancas, 6, blanco);
         ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
         caballos.add(caballo);
               
@@ -126,7 +126,7 @@ public class TableroServicio {
         for (int i = 17; i < 26; i++) {
            p_serv.Crear(peon, negras_movimientos, casillas_negras, i, negro);
             ubicaFichaEnTablero(peon.getPos_tablero(), peon.getId(),tablero, peon.getNombre());
-           peones.add(peon); 
+            peones.add(peon); 
         }
         for (int i = 26; i < 35; i++) {
             p_serv.Crear(peon, blancas_movimientos, casillas_blancas, i, blanco);
@@ -166,8 +166,15 @@ public class TableroServicio {
         tablero.setLanceros(lanceros);
         tablero.setPeones(peones);
         tablero.setTorres(torres);
+        
         tablero.setCaptura_por_las_blancas(new ArrayList<>());
         tablero.setCapturada_por_las_negreas(new ArrayList<>());
+        
+        tablero.setBlancas_movimientos(blancas_movimientos);
+        tablero.setNegras_movimientos(negras_movimientos);
+        
+        tablero.setCasillas_blancas(casillas_blancas);
+        tablero.setCasillas_negras(casillas_negras);
         
         return tablero;
     }
@@ -207,10 +214,7 @@ public class TableroServicio {
         String[][] arreglo_piezas=tablero.getMatriz_tablero();
         int [][] arreglo_id=tablero.getTablero_id_piezas();
         int fila = buscaFila(posicion), columna = buscaColumna(posicion);
-        
-        buscaFila(posicion);
-        buscaColumna(posicion);
-        
+                       
         arreglo_piezas[fila][columna]=pieza;
         arreglo_id[fila][columna]=id;
         
