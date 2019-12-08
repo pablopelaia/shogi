@@ -233,7 +233,7 @@ public class AlfilServicio {
         public boolean consultaMovimiento(Alfil alfil, int movimiento){
             
             boolean verificador=false;
-            
+                        
             for (Object movimiento_legal : alfil.getPosibles_movimientos()) {
                 
                 if (movimiento_legal.equals(movimiento)){

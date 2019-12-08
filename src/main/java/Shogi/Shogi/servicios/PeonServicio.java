@@ -25,13 +25,13 @@ public class PeonServicio {
         peon.setJugador(jugador);
         
         if (jugador.equals(negro)){
-            peon.setPos_tablero(id+54);            
-            posibles_movimientos.add(id+44);
-            piezas_mov.add(id+44);
+            peon.setPos_tablero(peon.getId()+54);            
+            posibles_movimientos.add(peon.getId()+44);
+            piezas_mov.add(peon.getId()+44);
         }else{
-            peon.setPos_tablero(id+5);
-            posibles_movimientos.add(id+15);
-            piezas_mov.add(id+15);
+            peon.setPos_tablero(peon.getId()-5); 
+            posibles_movimientos.add(peon.getId()+5);
+            piezas_mov.add(peon.getId()+5);
         }
         
         casillas_color.add(peon.getPos_tablero());
@@ -42,7 +42,7 @@ public class PeonServicio {
             nombre="B  "+peon.getTipo();
         }
         
-        peon.setNombre(nombre);        
+        peon.setNombre(nombre);
         peon.setPosibles_movimientos(posibles_movimientos);
         peon.setCapturado(false);
         peon.setCoronado(false);
@@ -103,8 +103,11 @@ public class PeonServicio {
 
     /**Recibe un peón y busca en el arreglo de posibles movimientos si conincide con el propuesto por el jugador*/
     public boolean consultaMovimiento(Peon peon, int movimiento) {
+        
         boolean verificador=false;
+        
             for (Object movimiento_legal : peon.getPosibles_movimientos()) {
+                
                 if (movimiento_legal.equals(movimiento)){
                     verificador=true;
                     break;

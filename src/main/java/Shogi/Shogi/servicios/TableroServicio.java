@@ -59,105 +59,207 @@ public class TableroServicio {
         PeonServicio p_serv = new PeonServicio(); 
         TorreServicio t_serv = new TorreServicio(); 
         
-        Alfil alfil = new Alfil();
+        Alfil alfil_1 = new Alfil();               
+        a_serv.Crear(alfil_1, casillas_negras, 1, negro);
+        ubicaFichaEnTablero(alfil_1.getPos_tablero(), alfil_1.getId(), tablero, alfil_1.getNombre());
+        alfiles.add(alfil_1);
         
-        a_serv.Crear(alfil, casillas_negras, 1, negro);
-        ubicaFichaEnTablero(alfil.getPos_tablero(), alfil.getId(), tablero, alfil.getNombre());
-        alfiles.add(alfil);
-        a_serv.Crear(alfil, casillas_blancas, 2, blanco);
-        ubicaFichaEnTablero(alfil.getPos_tablero(), alfil.getId(), tablero, alfil.getNombre());
-        alfiles.add(alfil);
-                   
-        Caballo caballo = new Caballo();
-        
-        c_serv.Crear(caballo, casillas_negras, 3, negro);
-        ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
-        caballos.add(caballo);
-        c_serv.Crear(caballo, casillas_negras, 4, negro);
-        ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
-        caballos.add(caballo);
-        c_serv.Crear(caballo, casillas_blancas, 5, blanco);
-        ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
-        caballos.add(caballo);
-        c_serv.Crear(caballo, casillas_blancas, 6, blanco);
-        ubicaFichaEnTablero(caballo.getPos_tablero(), caballo.getId(),tablero, caballo.getNombre());
-        caballos.add(caballo);
-              
-        GeneralDeOro generaldeoro = new GeneralDeOro();
-        
-        o_serv.Crear(generaldeoro, negras_movimientos, casillas_negras, 7, negro);
-        ubicaFichaEnTablero(generaldeoro.getPos_tablero(), generaldeoro.getId(),tablero, generaldeoro.getNombre());
-        generaldeoros.add(generaldeoro);
-        o_serv.Crear(generaldeoro, negras_movimientos, casillas_negras, 8, negro);
-        ubicaFichaEnTablero(generaldeoro.getPos_tablero(), generaldeoro.getId(),tablero, generaldeoro.getNombre());
-        generaldeoros.add(generaldeoro);
-        o_serv.Crear(generaldeoro, blancas_movimientos, casillas_blancas, 9, blanco);
-        ubicaFichaEnTablero(generaldeoro.getPos_tablero(), generaldeoro.getId(),tablero, generaldeoro.getNombre());
-        generaldeoros.add(generaldeoro);
-        o_serv.Crear(generaldeoro, blancas_movimientos, casillas_blancas, 10, blanco);
-        ubicaFichaEnTablero(generaldeoro.getPos_tablero(), generaldeoro.getId(),tablero, generaldeoro.getNombre());
-        generaldeoros.add(generaldeoro);
+        Alfil alfil_2 = new Alfil();
+        a_serv.Crear(alfil_2, casillas_blancas, 2, blanco);
+        ubicaFichaEnTablero(alfil_2.getPos_tablero(), alfil_2.getId(), tablero, alfil_2.getNombre());
+        alfiles.add(alfil_2);
                 
-        GeneralDePlata generaldeplata = new GeneralDePlata();
+        Caballo caballo_3 = new Caballo();
+        c_serv.Crear(caballo_3, casillas_negras, 3, negro);
+        ubicaFichaEnTablero(caballo_3.getPos_tablero(), caballo_3.getId(),tablero, caballo_3.getNombre());
+        caballos.add(caballo_3);
         
-        gp_serv.Crear(generaldeplata, negras_movimientos, casillas_negras, 11, negro);
-        ubicaFichaEnTablero(generaldeplata.getPos_tablero(), generaldeplata.getId(),tablero, generaldeplata.getNombre());
-        generaldeplatas.add(generaldeplata);
-        gp_serv.Crear(generaldeplata, negras_movimientos, casillas_negras, 12, negro);
-        ubicaFichaEnTablero(generaldeplata.getPos_tablero(), generaldeplata.getId(),tablero, generaldeplata.getNombre());
-        generaldeplatas.add(generaldeplata);
-        gp_serv.Crear(generaldeplata, blancas_movimientos, casillas_negras, 13, blanco);
-        ubicaFichaEnTablero(generaldeplata.getPos_tablero(), generaldeplata.getId(),tablero, generaldeplata.getNombre());
-        generaldeplatas.add(generaldeplata);
-        gp_serv.Crear(generaldeplata, blancas_movimientos, casillas_negras, 14, blanco);
-        ubicaFichaEnTablero(generaldeplata.getPos_tablero(), generaldeplata.getId(),tablero, generaldeplata.getNombre());
-        generaldeplatas.add(generaldeplata);
+        Caballo caballo_4 = new Caballo();
+        c_serv.Crear(caballo_4, casillas_negras, 4, negro);
+        ubicaFichaEnTablero(caballo_4.getPos_tablero(), caballo_4.getId(),tablero, caballo_4.getNombre());
+        caballos.add(caballo_4);
+        
+        Caballo caballo_5 = new Caballo();
+        c_serv.Crear(caballo_5, casillas_blancas, 5, blanco);
+        ubicaFichaEnTablero(caballo_5.getPos_tablero(), caballo_5.getId(),tablero, caballo_5.getNombre());
+        caballos.add(caballo_5);
+        
+        Caballo caballo_6 = new Caballo();
+        c_serv.Crear(caballo_6, casillas_blancas, 6, blanco);
+        ubicaFichaEnTablero(caballo_6.getPos_tablero(), caballo_6.getId(),tablero, caballo_6.getNombre());
+        caballos.add(caballo_6);
+              
+        GeneralDeOro generaldeoro_7 = new GeneralDeOro();        
+        o_serv.Crear(generaldeoro_7, negras_movimientos, casillas_negras, 7, negro);
+        ubicaFichaEnTablero(generaldeoro_7.getPos_tablero(), generaldeoro_7.getId(),tablero, generaldeoro_7.getNombre());
+        generaldeoros.add(generaldeoro_7);
+        
+        GeneralDeOro generaldeoro_8 = new GeneralDeOro(); 
+        o_serv.Crear(generaldeoro_8, negras_movimientos, casillas_negras, 8, negro);
+        ubicaFichaEnTablero(generaldeoro_8.getPos_tablero(), generaldeoro_8.getId(),tablero, generaldeoro_8.getNombre());
+        generaldeoros.add(generaldeoro_8);
+        
+        GeneralDeOro generaldeoro_9 = new GeneralDeOro(); 
+        o_serv.Crear(generaldeoro_9, blancas_movimientos, casillas_blancas, 9, blanco);
+        ubicaFichaEnTablero(generaldeoro_9.getPos_tablero(), generaldeoro_9.getId(),tablero, generaldeoro_9.getNombre());
+        generaldeoros.add(generaldeoro_9);
+        
+        GeneralDeOro generaldeoro_10 = new GeneralDeOro(); 
+        o_serv.Crear(generaldeoro_10, blancas_movimientos, casillas_blancas, 10, blanco);
+        ubicaFichaEnTablero(generaldeoro_10.getPos_tablero(), generaldeoro_10.getId(),tablero, generaldeoro_10.getNombre());
+        generaldeoros.add(generaldeoro_10);
+                
+        GeneralDePlata generaldeplata_11 = new GeneralDePlata();        
+        gp_serv.Crear(generaldeplata_11, negras_movimientos, casillas_negras, 11, negro);
+        ubicaFichaEnTablero(generaldeplata_11.getPos_tablero(), generaldeplata_11.getId(),tablero, generaldeplata_11.getNombre());
+        generaldeplatas.add(generaldeplata_11);
+        
+        GeneralDePlata generaldeplata_12 = new GeneralDePlata(); 
+        gp_serv.Crear(generaldeplata_12, negras_movimientos, casillas_negras, 12, negro);
+        ubicaFichaEnTablero(generaldeplata_12.getPos_tablero(), generaldeplata_12.getId(),tablero, generaldeplata_12.getNombre());
+        generaldeplatas.add(generaldeplata_12);
+        
+        GeneralDePlata generaldeplata_13 = new GeneralDePlata(); 
+        gp_serv.Crear(generaldeplata_13, blancas_movimientos, casillas_negras, 13, blanco);
+        ubicaFichaEnTablero(generaldeplata_13.getPos_tablero(), generaldeplata_13.getId(),tablero, generaldeplata_13.getNombre());
+        generaldeplatas.add(generaldeplata_13);
+        
+        GeneralDePlata generaldeplata_14 = new GeneralDePlata(); 
+        gp_serv.Crear(generaldeplata_14, blancas_movimientos, casillas_negras, 14, blanco);
+        ubicaFichaEnTablero(generaldeplata_14.getPos_tablero(), generaldeplata_14.getId(),tablero, generaldeplata_14.getNombre());
+        generaldeplatas.add(generaldeplata_14);
 
-        Lancero lancero = new Lancero();
-        l_serv.Crear(lancero, 15, negro, casillas_negras);
-        ubicaFichaEnTablero(lancero.getPos_tablero(), lancero.getId(),tablero, lancero.getNombre());
-        lanceros.add(lancero);
-        l_serv.Crear(lancero, 16, blanco, casillas_blancas);
-        ubicaFichaEnTablero(lancero.getPos_tablero(), lancero.getId(),tablero, lancero.getNombre());
-        lanceros.add(lancero);
+        Lancero lancero_15 = new Lancero();
+        l_serv.Crear(lancero_15, 15, negro, casillas_negras);
+        ubicaFichaEnTablero(lancero_15.getPos_tablero(), lancero_15.getId(),tablero, lancero_15.getNombre());
+        lanceros.add(lancero_15);
         
-        Peon peon = new Peon();
+        Lancero lancero_16 = new Lancero();
+        l_serv.Crear(lancero_16, 16, blanco, casillas_blancas);
+        ubicaFichaEnTablero(lancero_16.getPos_tablero(), lancero_16.getId(),tablero, lancero_16.getNombre());
+        lanceros.add(lancero_16);
         
-        for (int i = 17; i < 26; i++) {
-           p_serv.Crear(peon, negras_movimientos, casillas_negras, i, negro);
-            ubicaFichaEnTablero(peon.getPos_tablero(), peon.getId(),tablero, peon.getNombre());
-            peones.add(peon); 
-        }
-        for (int i = 26; i < 35; i++) {
-            p_serv.Crear(peon, blancas_movimientos, casillas_blancas, i, blanco);
-            ubicaFichaEnTablero(peon.getPos_tablero(), peon.getId(),tablero, peon.getNombre());
-            peones.add(peon);
-        }
+        Peon peon_17 = new Peon();
+        p_serv.Crear(peon_17, negras_movimientos, casillas_negras, 17, negro);
+        ubicaFichaEnTablero(peon_17.getPos_tablero(), peon_17.getId(),tablero, peon_17.getNombre());
+        peones.add(peon_17); 
+        
+        Peon peon_18 = new Peon();
+        p_serv.Crear(peon_18, negras_movimientos, casillas_negras, 18, negro);
+        ubicaFichaEnTablero(peon_18.getPos_tablero(), peon_18.getId(),tablero, peon_18.getNombre());
+        peones.add(peon_18);
+        
+        Peon peon_19 = new Peon();
+        p_serv.Crear(peon_19, negras_movimientos, casillas_negras, 19, negro);
+        ubicaFichaEnTablero(peon_19.getPos_tablero(), peon_19.getId(),tablero, peon_19.getNombre());
+        peones.add(peon_19);
+        
+        Peon peon_20 = new Peon();
+        p_serv.Crear(peon_20, negras_movimientos, casillas_negras, 20, negro);
+        ubicaFichaEnTablero(peon_20.getPos_tablero(), peon_20.getId(),tablero, peon_20.getNombre());
+        peones.add(peon_20);
+        
+        Peon peon_21 = new Peon();
+        p_serv.Crear(peon_21, negras_movimientos, casillas_negras, 21, negro);
+        ubicaFichaEnTablero(peon_21.getPos_tablero(), peon_21.getId(),tablero, peon_21.getNombre());
+        peones.add(peon_21);
+        
+        Peon peon_22 = new Peon();
+        p_serv.Crear(peon_22, negras_movimientos, casillas_negras, 22, negro);
+        ubicaFichaEnTablero(peon_22.getPos_tablero(), peon_22.getId(),tablero, peon_22.getNombre());
+        peones.add(peon_22);
+        
+        Peon peon_23 = new Peon();
+        p_serv.Crear(peon_23, negras_movimientos, casillas_negras, 23, negro);
+        ubicaFichaEnTablero(peon_23.getPos_tablero(), peon_23.getId(),tablero, peon_23.getNombre());
+        peones.add(peon_23);
+        
+        Peon peon_24 = new Peon();
+        p_serv.Crear(peon_24, negras_movimientos, casillas_negras, 24, negro);
+        ubicaFichaEnTablero(peon_24.getPos_tablero(), peon_24.getId(),tablero, peon_24.getNombre());
+        peones.add(peon_24);
+        
+        Peon peon_25 = new Peon();
+        p_serv.Crear(peon_25, negras_movimientos, casillas_negras, 25, negro);
+        ubicaFichaEnTablero(peon_25.getPos_tablero(), peon_25.getId(),tablero, peon_25.getNombre());
+        peones.add(peon_25);
+        
+        Peon peon_26 = new Peon();
+        p_serv.Crear(peon_26, blancas_movimientos, casillas_blancas, 26, blanco);
+        ubicaFichaEnTablero(peon_26.getPos_tablero(), peon_26.getId(),tablero, peon_26.getNombre());
+        peones.add(peon_26);
+        
+        Peon peon_27 = new Peon();
+        p_serv.Crear(peon_27, blancas_movimientos, casillas_blancas, 27, blanco);
+        ubicaFichaEnTablero(peon_27.getPos_tablero(), peon_27.getId(),tablero, peon_27.getNombre());
+        peones.add(peon_27);
+        
+        Peon peon_28 = new Peon();
+        p_serv.Crear(peon_28, blancas_movimientos, casillas_blancas, 28, blanco);
+        ubicaFichaEnTablero(peon_28.getPos_tablero(), peon_28.getId(),tablero, peon_28.getNombre());
+        peones.add(peon_28);
+        
+        Peon peon_29 = new Peon();
+        p_serv.Crear(peon_29, blancas_movimientos, casillas_blancas, 29, blanco);
+        ubicaFichaEnTablero(peon_29.getPos_tablero(), peon_29.getId(),tablero, peon_29.getNombre());
+        peones.add(peon_29);
+        
+        Peon peon_30 = new Peon();
+        p_serv.Crear(peon_30, blancas_movimientos, casillas_blancas, 30, blanco);
+        ubicaFichaEnTablero(peon_30.getPos_tablero(), peon_30.getId(),tablero, peon_30.getNombre());
+        peones.add(peon_30);
+        
+        Peon peon_31 = new Peon();
+        p_serv.Crear(peon_31, blancas_movimientos, casillas_blancas, 31, blanco);
+        ubicaFichaEnTablero(peon_31.getPos_tablero(), peon_31.getId(),tablero, peon_31.getNombre());
+        peones.add(peon_31);
+        
+        Peon peon_32 = new Peon();
+        p_serv.Crear(peon_32, blancas_movimientos, casillas_blancas, 32, blanco);
+        ubicaFichaEnTablero(peon_32.getPos_tablero(), peon_32.getId(),tablero, peon_32.getNombre());
+        peones.add(peon_32);
+        
+        Peon peon_33 = new Peon();
+        p_serv.Crear(peon_33, blancas_movimientos, casillas_blancas, 33, blanco);
+        ubicaFichaEnTablero(peon_33.getPos_tablero(), peon_33.getId(),tablero, peon_33.getNombre());
+        peones.add(peon_33);
+        
+        Peon peon_34 = new Peon();
+        p_serv.Crear(peon_34, blancas_movimientos, casillas_blancas, 34, blanco);
+        ubicaFichaEnTablero(peon_34.getPos_tablero(), peon_34.getId(),tablero, peon_34.getNombre());
+        peones.add(peon_34);
 
-        Torre torre = new Torre();
+        Torre torre_35 = new Torre();        
+        t_serv.Crear(torre_35, negras_movimientos, casillas_negras, 35, negro);
+        ubicaFichaEnTablero(torre_35.getPos_tablero(), torre_35.getId(),tablero, torre_35.getNombre());
+        torres.add(torre_35);
         
-        t_serv.Crear(torre, negras_movimientos, casillas_negras, 35, negro);
-        ubicaFichaEnTablero(torre.getPos_tablero(), torre.getId(),tablero, torre.getNombre());
-        torres.add(torre);
-        t_serv.Crear(torre, negras_movimientos, casillas_negras, 36, negro);
-        ubicaFichaEnTablero(torre.getPos_tablero(), torre.getId(),tablero, torre.getNombre());
-        torres.add(torre);
-        t_serv.Crear(torre, blancas_movimientos, casillas_blancas, 37, blanco);
-        ubicaFichaEnTablero(torre.getPos_tablero(), torre.getId(),tablero, torre.getNombre());
-        torres.add(torre);
-        t_serv.Crear(torre, blancas_movimientos, casillas_blancas, 38, blanco);
-        ubicaFichaEnTablero(torre.getPos_tablero(), torre.getId(),tablero, torre.getNombre());
-        torres.add(torre);
+        Torre torre_36 = new Torre();
+        t_serv.Crear(torre_36, negras_movimientos, casillas_negras, 36, negro);
+        ubicaFichaEnTablero(torre_36.getPos_tablero(), torre_36.getId(),tablero, torre_36.getNombre());
+        torres.add(torre_36);
+        
+        Torre torre_37 = new Torre();
+        t_serv.Crear(torre_37, blancas_movimientos, casillas_blancas, 37, blanco);
+        ubicaFichaEnTablero(torre_37.getPos_tablero(), torre_37.getId(),tablero, torre_37.getNombre());
+        torres.add(torre_37);
+        
+        Torre torre_38 = new Torre();
+        t_serv.Crear(torre_38, blancas_movimientos, casillas_blancas, 38, blanco);
+        ubicaFichaEnTablero(torre_38.getPos_tablero(), torre_38.getId(),tablero, torre_38.getNombre());
+        torres.add(torre_38);
         
         ReyServicio s_rey = new ReyServicio();
         
-        Rey rey = new Rey();
-        rey=s_rey.Crear(negro, negras_movimientos, casillas_negras, 39);
-        ubicaFichaEnTablero(rey.getPos_tablero(), rey.getId(),tablero, rey.getNombre());
-        tablero.setRey_negro(rey);
-        rey=s_rey.Crear(blanco, blancas_movimientos, casillas_blancas, 40);
-        ubicaFichaEnTablero(rey.getPos_tablero(), rey.getId(),tablero, rey.getNombre());
-        tablero.setRey_blanco(rey);
+        Rey rey_39 = new Rey();
+        rey_39=s_rey.Crear(negro, negras_movimientos, casillas_negras, 39);
+        ubicaFichaEnTablero(rey_39.getPos_tablero(), rey_39.getId(),tablero, rey_39.getNombre());
+        tablero.setRey_negro(rey_39);
+        
+        Rey rey_40 = new Rey();
+        rey_40=s_rey.Crear(blanco, blancas_movimientos, casillas_blancas, 40);
+        ubicaFichaEnTablero(rey_40.getPos_tablero(), rey_40.getId(),tablero, rey_40.getNombre());
+        tablero.setRey_blanco(rey_40);
   
         tablero.setAlfiles(alfiles);
         tablero.setCaballos(caballos);
@@ -182,11 +284,12 @@ public class TableroServicio {
     /*Recibe un casillero y el color que queremos ver si ocupa o no el mismo, devuelve un valor booleano*/
     public boolean posicionOcupada (Tablero tablero, Integer buscar, Jugador color){      
         
-        boolean respuesta=false; 
-                
+        boolean respuesta=false;
+        
         if (color.equals(negro)){
             
-            for (Integer casilla : tablero.getNegras_movimientos()) {
+            for (Integer casilla : tablero.getCasillas_negras()) {
+                
                 if (casilla.equals(buscar)){
                     respuesta=true;
                     break;
@@ -194,7 +297,8 @@ public class TableroServicio {
             }      
         }else{
             
-            for (Integer casilla : tablero.getBlancas_movimientos()) {
+            for (Integer casilla : tablero.getCasillas_blancas()) {
+                
                 if (casilla.equals(buscar)){
                     respuesta=true;
                     break;
@@ -244,6 +348,7 @@ public class TableroServicio {
             }
             System.out.println("");
         }
+        System.out.println(" ");
     }
     
 
@@ -591,10 +696,13 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
     de estas dos opciones el valor retornado sera false.*/    
     public boolean compruebaCasillaPosible(int casilla_destino, Tablero tablero, Jugador turno) {
         
-        int columna=buscaColumna(casilla_destino), fila=buscaFila(casilla_destino);
+        int columna=buscaColumna(casilla_destino), fila=buscaFila(casilla_destino), valor_encontrado_casilla;
         boolean respuesta=false;
                 
-        if (tablero.getTablero_id_piezas()[fila][columna]==0){
+        valor_encontrado_casilla=tablero.getTablero_id_piezas()[fila][columna];
+        
+        if (valor_encontrado_casilla==0){
+            
             respuesta=true;                   
         }else{
             
@@ -608,11 +716,11 @@ Los movimientos del rey del siguiente turno se verÃ¡n en otros mÃ©todos apar
             
             for (Integer pieza : arreglo) {
                 
-                if (casilla_destino==pieza){
+                if (valor_encontrado_casilla==pieza){
                     respuesta=true;
                     break;
                 }                
-            }
+            }            
         }
         
         return respuesta;

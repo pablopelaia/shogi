@@ -119,7 +119,7 @@ public class PartidaServicio {
                 do {
                     casilla_origen=Integer.parseInt(JOptionPane.showInputDialog("ingrese id de la pieza que desea ingresar"));
                     casilla_destino=Integer.parseInt(JOptionPane.showInputDialog("ingrese el casillero al cual desea ingresar la pieza"));
-                    
+                     
                     verificador=tableroservicio.compruebaCasillaPosible(casilla_destino, tablero, turno);
                     
                 } while (!verificador);
@@ -140,22 +140,20 @@ public class PartidaServicio {
         }
         
         if (!verificador){
+            
+            verificador=true;
                      
             do {
                 casilla_origen=Integer.parseInt(JOptionPane.showInputDialog("ingrese el casillero de la pieza que desea mover"));
                 casilla_destino=Integer.parseInt(JOptionPane.showInputDialog("ingrese el casillero al que desea mover la pieza"));
-
-                if (casilla_destino==casilla_origen){
-                    verificador=false;
-
-                }else{    
+              
+                if (casilla_destino!=casilla_origen){
+                    
                     id_pieza=tableroservicio.buscaId(casilla_origen, tablero);
-
-                    if (id_pieza==0){
-                        verificador=false;
-
-                    }else{
-                        verificaMovimiento(verificador, turno, tablero, id_pieza, casilla_destino, casilla_origen);                    
+                    
+                    if (id_pieza!=0){
+                        
+                        verificaMovimiento(verificador, turno, tablero, id_pieza, casilla_origen, casilla_destino);
                     }     
                 }
 
@@ -167,9 +165,7 @@ public class PartidaServicio {
         
         partida.setTablero(tablero);
         
-        System.out.println("SE REALIZÃ“ EL MOVIMIENTO CON Ã‰XITO, ANALIZANDO JAQUE");
         tableroservicio.imprimirTablero(partida, turno);
-        System.out.println("SE REALIZÃ“ EL MOVIMIENTO CON Ã‰XITO, ANALIZANDO JAQUE");
         
         tableroservicio.seteaNuevosPosiblesMovimientos(tablero, turno);
         
@@ -192,17 +188,20 @@ jugador de ese turno.
     
     public void verificaMovimiento(boolean verificador, Jugador turno, Tablero tablero, int  id_pieza, int casilla_origen, int casilla_destino){
         
-        String respuesta = null;
+        String respuesta = "";
         
         TableroServicio tableroservicio = new TableroServicio();
-                      
+        
         if (id_pieza<3){
+                        
             AlfilServicio alfilservicio = new AlfilServicio();
             ArrayList<Alfil> arreglo =tablero.getAlfiles();
             Alfil pieza_a_mover = new Alfil();
             
             for (Alfil alfil : arreglo) {
+                
                 if(alfil.getId()==id_pieza){
+                    
                     verificador=(alfil.getJugador().equals(turno));
                     
                     if (verificador){
@@ -399,7 +398,7 @@ jugador de ese turno.
                     }else{
                         
                         if (id_pieza<17){
-                        
+                            
                             LanceroServicio lanceroservicio = new LanceroServicio();
                             ArrayList<Lancero> arreglo = tablero.getLanceros();
                             Lancero pieza_a_mover = new Lancero();
@@ -467,13 +466,13 @@ jugador de ese turno.
                         }else{
                             
                             if (id_pieza<35){
-                            
+                                
                                 PeonServicio peonservicio = new PeonServicio();
                                 ArrayList<Peon> arreglo = tablero.getPeones();
                                 Peon pieza_a_mover = new Peon();
                                 
                                 for (Peon peon : arreglo) {
-                                
+                                    
                                     if (peon.getId()==id_pieza){
                                         verificador=(peon.getJugador().equals(turno));
                                     
@@ -489,7 +488,7 @@ jugador de ese turno.
                                 
                                     if (verificador){
                                    
-                                        arreglo.remove(pieza_a_mover);                                    
+                                        arreglo.remove(pieza_a_mover);                                        
                                         moverPieza(tablero, pieza_a_mover, casilla_destino, casilla_origen, turno);
                                         
                                         if (turno.equals(negro)){
@@ -666,7 +665,6 @@ jugador de ese turno.
         }
         
         pieza.setPos_tablero(casilla_destino);
-         
         if (pieza.getJugador().equals(negro)){
             
             tablero.getCasillas_negras().remove(casilla_origen);
@@ -676,20 +674,21 @@ jugador de ese turno.
             tablero.getCasillas_blancas().remove(casilla_origen);
             tablero.getCasillas_blancas().add(casilla_destino);
         }
+        
         columna=tableroservicio.buscaColumna(casilla_origen);
         fila=tableroservicio.buscaFila(casilla_origen);
                 
         tablero.getTablero_id_piezas()[fila][columna]=0;
         
         nombre_pieza = tablero.getMatriz_tablero()[fila][columna];
-        tablero.getMatriz_tablero()[fila][columna]="     ";
+        tablero.getMatriz_tablero()[fila][columna]="      ";
         
         columna=tableroservicio.buscaColumna(casilla_destino);
         fila=tableroservicio.buscaFila(casilla_destino);
         
         tablero.getTablero_id_piezas()[fila][columna]=pieza.getId();
-        tablero.getMatriz_tablero()[fila][columna]=nombre_pieza;        
-         
+        tablero.getMatriz_tablero()[fila][columna]=nombre_pieza;
+        
     }
     
 /* Nuevamente con el uso de los "if-else" identificamos de quÃƒÂ© tipo pieza se trata.
@@ -1668,5 +1667,5 @@ jugador de ese turno.
         }else{
             System.out.println("El jugador "+partida.getParticipante_blancas().getNombre()+" gana el partido");
         }
-    }    
+    }       
 }

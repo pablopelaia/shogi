@@ -12,7 +12,7 @@ public class Shogi {
             
         PartidaServicio partidaservicio = new PartidaServicio();
         Partida partida = partidaservicio.crearPartida();
-         System.out.println("PARTIDA CREADA");
+         
             do {
                 partidaservicio.nuevoTurno(partida);
             } while (!partida.isCheck_mate());
